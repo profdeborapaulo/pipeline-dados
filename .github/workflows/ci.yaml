@@ -22,6 +22,7 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install black autopep8 flake8
+          
 
       # Corrige automaticamente os problemas de estilo
       - name: Auto format code
@@ -33,7 +34,11 @@ jobs:
       - name: Run lint
         run: |
           flake8 src/
-
+    
       - name: Run tests
         run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
           pytest -q
+      
+
+          
